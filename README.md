@@ -26,13 +26,13 @@ This README describes the implementation of various functions for surface qualit
 
 ### **1.1 Uniform Laplace Operator**
 
-The uniform Laplacian \( L_u(v) \) is computed using the centroid of the one-ring neighborhood of a vertex \( v \). Mathematically:
+The uniform Laplacian $\( L_u(v) \)$ is computed using the centroid of the one-ring neighborhood of a vertex $\( v \)$. Mathematically:
 
 $$
 L_u(v) = \frac{1}{n} \sum_{i=1}^n v_i - v
 $$
 
-Where \( n \) is the number of neighbors, \( v_i \) are the neighboring vertices, and \( v \) is the current vertex. This was implemented in the `computeUniformLaplaceOperator()` function. The values are stored in `self.uniformLaplaceVector`.
+Where $\( n \)$ is the number of neighbors, $\( v_i \)$ are the neighboring vertices, and $\( v \)$ is the current vertex. This was implemented in the `computeUniformLaplaceOperator()` function. The values are stored in `self.uniformLaplaceVector`.
 
 
 ```python
@@ -131,7 +131,7 @@ def uniformLaplaceSmoothing(self, nbIter):
 
 ### **2.1 Definition**
 
-The triangle quality is measured as the ratio of the circumradius \( r \) to the minimum edge length \( e_{\text{min}} \):
+The triangle quality is measured as the ratio of the circumradius $\( r \)$ to the minimum edge length $\( e_{\text{min}} \)$:
 
 $$
 \text{Quality} = \frac{r}{e_{\text{min}}}
@@ -184,7 +184,7 @@ def computeTriangleQuality(self):
 
 ```
 #### Challenges
-- Numerical instability for degenerate triangles. A fallback was implemented to assign a high-quality value when \( A \approx 0 \).
+- Numerical instability for degenerate triangles. A fallback was implemented to assign a high-quality value when $\( A \approx 0 \)$.
 
 ---
 
@@ -192,13 +192,13 @@ def computeTriangleQuality(self):
 
 ### **3.1 Laplace-Beltrami Operator**
 
-The Laplace-Beltrami operator \( L_B(v) \) uses cotangent weights for neighboring vertices:
+The Laplace-Beltrami operator $\( L_B(v) \)$ uses cotangent weights for neighboring vertices:
 
 $$
-w_{ij} = \frac{\cot(\alpha) + \cot(\beta)}{2}
+L_B(v) = \sum_i w_i (v_i - v)
 $$
 
-Where $\( \alpha \)$ and $\( \beta \)$ are angles opposite the edge $\( (v, v_i) \)$. This was implemented in `computeLaplaceBeltramiOperator()`. Results are stored in `self.LaplaceBeltramiVector`.
+This was implemented in `computeLaplaceBeltramiOperator()`. Results are stored in `self.LaplaceBeltramiVector`.
 
 ```python
 def computeLaplaceBeltramiOperator(self):
@@ -330,7 +330,7 @@ def tangentialSmoothing(self, nbIter):
 
 ## **4. Gaussian Curvature Approximation**
 
-Gaussian curvature \( K \) is computed using the angle defect:
+Gaussian curvature $\( K \)$ is computed using the angle defect:
 
 $$
 K(v) = 2\pi - \sum \theta_i
