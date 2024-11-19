@@ -74,9 +74,9 @@ def computeUniformLaplaceOperator(self):
 
 The mean curvature approximation is calculated as:
 
-\[
+$$
 H_u(v) = -\frac{1}{2} \|L_u(v)\|
-\]
+$$
 
 Implemented in `computeUniformMeanCurvature()`, the computed curvature values are stored in `self.uniformMeanCurvature`.
 
@@ -105,9 +105,9 @@ def computeUniformMeanCurvature(self):
 
 Vertices are smoothed by moving them halfway along their uniform Laplacian vector:
 
-\[
+$$
 v' = v + \frac{1}{2} L_u(v)
-\]
+$$
 
 This was implemented in `uniformLaplaceSmoothing(nbIter)`. The process iteratively updates the vertices over `nbIter` steps.
 
@@ -133,15 +133,15 @@ def uniformLaplaceSmoothing(self, nbIter):
 
 The triangle quality is measured as the ratio of the circumradius \( r \) to the minimum edge length \( e_{\text{min}} \):
 
-\[
+$$
 \text{Quality} = \frac{r}{e_{\text{min}}}
-\]
+$$
 
 Where the circumradius is derived from:
 
-\[
+$$
 A = \frac{\|a \times b\|}{2}, \quad r = \frac{\|a\| \|b\| \|c\|}{2\|a \times b\|}
-\]
+$$
 
 Implemented in `computeTriangleQuality()`, results are stored in `self.triangleQuality`.
 
@@ -194,11 +194,11 @@ def computeTriangleQuality(self):
 
 The Laplace-Beltrami operator \( L_B(v) \) uses cotangent weights for neighboring vertices:
 
-\[
+$$
 w_{ij} = \frac{\cot(\alpha) + \cot(\beta)}{2}
-\]
+$$
 
-Where \( \alpha \) and \( \beta \) are angles opposite the edge \( (v, v_i) \). This was implemented in `computeLaplaceBeltramiOperator()`. Results are stored in `self.LaplaceBeltramiVector`.
+Where $\( \alpha \)$ and $\( \beta \)$ are angles opposite the edge $\( (v, v_i) \)$. This was implemented in `computeLaplaceBeltramiOperator()`. Results are stored in `self.LaplaceBeltramiVector`.
 
 ```python
 def computeLaplaceBeltramiOperator(self):
@@ -229,9 +229,9 @@ def computeLaplaceBeltramiOperator(self):
 
 The mean curvature is approximated as:
 
-\[
+$$
 H_B(v) = \frac{1}{2} \|L_B(v)\|
-\]
+$$
 
 Implemented in `computeLaplaceBeltramiMeanCurvature()`, with values stored in `self.LaplaceBeltramiMeanCurvature`.
 
@@ -256,9 +256,9 @@ def computeLaplaceBeltramiMeanCurvature(self):
 
 Smoothing is achieved by normalizing the weights and updating vertices as:
 
-\[
+$$
 v' = v + \frac{1}{2} \frac{L_B(v)}{\sum w_{ij}}
-\]
+$$
 
 This was implemented in `LaplaceBeltramiSmoothing(nbIter)`.
 
@@ -294,9 +294,9 @@ def LaplaceBeltramiSmoothing(self, nbIter):
 
 Vertices are smoothed only in the tangent plane:
 
-\[
+$$
 L_T(v) = L_u(v) - \langle L_u(v), n \rangle n
-\]
+$$
 
 Implemented in `tangentialSmoothing(nbIter)`.
 
@@ -332,11 +332,11 @@ def tangentialSmoothing(self, nbIter):
 
 Gaussian curvature \( K \) is computed using the angle defect:
 
-\[
+$$
 K(v) = 2\pi - \sum \theta_i
-\]
+$$
 
-Where \( \theta_i \) are angles of the faces surrounding \( v \). This was not implemented in `computeGaussCurvature()` because I didnt have the time.
+Where $\( \theta_i \)$ are angles of the faces surrounding $\( v \)$. This was not implemented in `computeGaussCurvature()` because I didnt have the time.
 
 ---
 
