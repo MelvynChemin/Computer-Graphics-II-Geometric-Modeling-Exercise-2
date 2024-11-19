@@ -28,9 +28,9 @@ This README describes the implementation of various functions for surface qualit
 
 The uniform Laplacian \( L_u(v) \) is computed using the centroid of the one-ring neighborhood of a vertex \( v \). Mathematically:
 
-\[
+$$
 L_u(v) = \frac{1}{n} \sum_{i=1}^n v_i - v
-\]
+$$
 
 Where \( n \) is the number of neighbors, \( v_i \) are the neighboring vertices, and \( v \) is the current vertex. This was implemented in the `computeUniformLaplaceOperator()` function. The values are stored in `self.uniformLaplaceVector`.
 
