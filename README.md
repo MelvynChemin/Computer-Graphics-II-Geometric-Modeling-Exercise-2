@@ -193,6 +193,13 @@ def computeTriangleQuality(self):
 #### Challenges
 - Numerical instability for degenerate triangles. A fallback was implemented to assign a high-quality value when $\( A \approx 0 \)$.
 
+  #### Before Smoothing
+![Triangle Shapes Before Uniform Laplace Smoothing](images/triangle_shape_before_ulaplace_smoothing.png)
+
+#### After 16 Iterations of Smoothing
+![Triangle Shapes After Uniform Laplace Smoothing](images/triangle_shape_after_ulaplace_16smoothing.png)
+
+
 ---
 
 ## **3. Laplace-Beltrami Operator and Smoothing**
@@ -295,6 +302,27 @@ def LaplaceBeltramiSmoothing(self, nbIter):
 
         print("...done")
 ```
+
+#### After 16 Iterations of Laplace-Beltrami Smoothing
+![Face dataset After Laplace-Beltrami Smoothing](images/face_dataset_after_lap-beltram_16smoothing.png)
+![Triangle Shapes After Laplace-Beltrami Smoothing](images/triangle_shape_after_lap-beltram_16smoothing.png)
+
+
+### **Laplace-Beltrami and Uniform Laplace Smoothing comparaison :**
+
+- **Uniform Laplace Smoothing**:
+  - While this method provides initial smoothing to reduce noise, it often **distorts the triangles**, especially in regions with high curvature or irregular geometry.
+  - The resulting triangle shapes tend to become skinny or elongated, lowering their overall quality.
+
+- **Laplace-Beltrami Smoothing**:
+  - This method preserves the shape of the triangles much better, as it **minimizes distortion** by moving vertices primarily along the surface normal.
+  - The triangles become more uniform and equilateral, resulting in a higher-quality mesh.
+
+### **Final Comparison**:
+- **Uniform Laplace Smoothing** is faster to compute but significantly distorts the triangles, making it less suitable for applications requiring high geometric fidelity.
+- **Laplace-Beltrami Smoothing** is computationally more expensive but results in smoother surfaces with **undistorted triangle shapes**, making it ideal for high-quality mesh processing.
+
+For applications where triangle shape preservation is critical, **Laplace-Beltrami Smoothing** is the recommended approach. For less sensitive tasks or quick noise reduction, **Uniform Laplace Smoothing** can be used.
 ---
 
 ### **3.4 Tangential Smoothing**
@@ -332,7 +360,11 @@ def tangentialSmoothing(self, nbIter):
 
 #### Challenges
 - Accurate projection onto the tangent plane required precise normal computation.
+- 
+Tangential smoothing enhances triangle shapes without altering their normal direction significantly:
 
+#### After 16 Iterations of Tangential Smoothing
+![Triangle Shapes After Tangential Smoothing](images/triangle_shape_after_tangential_ulaplace_16smoothing.png)
 ---
 
 ## **4. Gaussian Curvature Approximation**
