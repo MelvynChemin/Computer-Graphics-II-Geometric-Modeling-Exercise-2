@@ -125,6 +125,13 @@ def uniformLaplaceSmoothing(self, nbIter):
 
         print("...done")
 ```
+
+#### Before Smoothing
+![Face Dataset Before Smoothing](images/face_dataset_before_smoothing.png)
+
+#### After 16 Iterations of Smoothing
+![Face Dataset After Uniform Laplace Smoothing](images/face_dataset_after_16smoothing.png)
+
 ---
 
 ## **2. Triangle Quality**
